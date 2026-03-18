@@ -1,0 +1,3 @@
+submission_id,model_name,model_size,task_family,prompt_set,group,runs,collapse_rate,mean_event_time,mean_lead_time,mean_quality_score,max_instability_auc,notes
+demo_001,gpt2,124M,general,default_v1,CONTROL,30,0.83,11.2,3.7,0.85,0.68,basic baseline
+demo_002,gpt2,124M,general,default_v1,STRONG,30,0.47,19.1,14.6,0.76,0.74,temperature clamp

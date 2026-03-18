@@ -1,0 +1,61 @@
+{
+  "fields": [
+    {
+      "name": "submission_id",
+      "type": "string"
+    },
+    {
+      "name": "model_name",
+      "type": "string"
+    },
+    {
+      "name": "model_size",
+      "type": "string"
+    },
+    {
+      "name": "task_family",
+      "type": "string"
+    },
+    {
+      "name": "prompt_set",
+      "type": "string"
+    },
+    {
+      "name": "group",
+      "type": "string",
+      "allowed": [
+        "CONTROL",
+        "MILD",
+        "STRONG"
+      ]
+    },
+    {
+      "name": "runs",
+      "type": "integer"
+    },
+    {
+      "name": "collapse_rate",
+      "type": "float"
+    },
+    {
+      "name": "mean_event_time",
+      "type": "float"
+    },
+    {
+      "name": "mean_lead_time",
+      "type": "float"
+    },
+    {
+      "name": "mean_quality_score",
+      "type": "float"
+    },
+    {
+      "name": "max_instability_auc",
+      "type": "float"
+    },
+    {
+      "name": "notes",
+      "type": "string"
+    }
+  ]
+}

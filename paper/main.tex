@@ -1,0 +1,125 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{conjecture}{Conjecture}
+
+\title{Adaptive Triangle-Driven Dynamics and Spectral Instability:\\
+Local Coupling, Sharp Thresholds, and a Testable Framework}
+\author{Anonymous}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study a triangle-weighted edge deletion process (WTRED) on Erd\H{o}s--R\'enyi graphs and derive a sharp local-coupling threshold at density $r \sim n^{-2/3}$. We show that local weak convergence to a branching-process limit holds if and only if the density remains above this decorrelation scale. The mechanism is driven by amplifying local motifs, with the diamond motif acting as the minimal witness of coupling failure. We further propose a fragmentation description for the sparse regime and give a weak-form operator-theoretic criterion in terms of spectral instability. Finally, we transfer the same diagnostic language to transformer attention, where spectral concentration is posed as a testable hypothesis for reasoning collapse.
+\end{abstract}
+
+\section{Introduction}
+Adaptive random graph dynamics induce history-dependent correlations that challenge standard mean-field analysis. We analyze WTRED, where edges are removed with probability proportional to their triangle participation count. The key phenomenon is a separation between topological and informational thresholds: giant-cluster breakup occurs at $r \sim n^{-1/2}$, while local coupling survives until the smaller scale $r \sim n^{-2/3}$.
+
+\section{Model}
+Let $G_t$ be the residual graph and let $\tau_t(e)$ denote the number of triangles containing edge $e$. The process removes edges according to
+\[
+\mathbb P(e_t=e\mid \mathcal F_t)=\frac{\tau_t(e)}{\sum_{e'\in E_t}\tau_t(e')}.
+\]
+
+Define
+\[
+q_t=\frac{3T_t}{W_t}, \qquad W_t=\sum_v \binom{d_t(v)}{2}.
+\]
+
+\section{Local Coupling Regime}
+\begin{theorem}[Upper Bound on Local Coupling]
+If $r_t \gg n^{-2/3}$, then for exploration depth $k=O(\log n)$,
+\[
+d_{\mathrm{TV}}(\mathcal N_k,\mathcal T_k^{\mathrm{GW}})\to 0.
+\]
+\end{theorem}
+
+\section{Failure Boundary}
+\begin{theorem}[Failure of Coupling]
+If $r_t\le n^{-2/3-\delta}$ for some $\delta>0$, then there exists a local witness event $A$ (the diamond overlap event) such that
+\[
+\liminf_{n\to\infty}\left|\mathbb P_{\mathrm{WTRED}}(A)-\mathbb P_{\mathrm{GW}}(A)\right|>0.
+\]
+Consequently,
+\[
+d_{\mathrm{TV}}(\mathcal N_k,\mathcal T_k^{\mathrm{GW}})\not\to 0.
+\]
+\end{theorem}
+
+\section{Sharp Threshold}
+\begin{theorem}[Sharp Threshold for Local Coupling]
+\[
+d_{\mathrm{TV}}(\mathcal N_k,\mathcal T_k^{\mathrm{GW}})\to 0
+\iff r_t\gg n^{-2/3}.
+\]
+\end{theorem}
+
+\section{Motifs, Functional Energy, and Spectral Stability}
+We define the motif intensity
+\[
+\Lambda_H(r,n)=n^{v(H)-2}r^{e(H)-1}.
+\]
+For amplifying motifs, local coupling breaks down when $\Lambda_H$ does not vanish asymptotically. In WTRED, the minimal such motif is the diamond.
+
+We further introduce the correlation energy
+\[
+\mathcal V=\sum_{e\sim e'}\mathrm{Cov}(\tau(e),\tau(e')),
+\]
+and the correlation operator
+\[
+(\mathcal K f)(e)=\sum_{e'\sim e}\mathrm{Cov}(\tau(e),\tau(e'))f(e').
+\]
+
+\begin{proposition}[Weak Functional Criterion]
+Local coupling fails when the normalized correlation energy ceases to vanish.
+\end{proposition}
+
+\begin{proposition}[Weak Spectral Criterion]
+Let
+\[
+\widetilde{\mathcal K}=\frac{\mathcal K}{(\mathbb E\tau)^2}.
+\]
+If
+\[
+\rho(\widetilde{\mathcal K})=o\left(\frac{1}{\log n}\right),
+\]
+then local coupling persists. If $\rho(\widetilde{\mathcal K})$ is bounded away from zero, motif-induced correlation amplification can produce a witness event and force coupling failure.
+\end{proposition}
+
+\section{Sparse Fragmentation Regime}
+\begin{conjecture}[Fragmentation PDE]
+For $r_t\ll n^{-2/3}$, the triangle-cluster size distribution is governed by a Smoluchowski-type fragmentation equation with a heavy-tailed kernel inherited from random-tree cutting.
+\end{conjecture}
+
+For a uniform labeled tree of size $k$, the ordered split kernel is
+\[
+\Phi_k(i,k-i)=\frac{\binom{k}{i}i^{i-1}(k-i)^{k-i-1}}{(k-1)k^{k-2}},
+\]
+with asymptotic form
+\[
+\Phi_k(i,k-i)\asymp C\frac{k^{3/2}}{i^{3/2}(k-i)^{3/2}}.
+\]
+
+\section{Attention Spectral Probe}
+For a transformer attention matrix $A\in\mathbb R^{T\times T}$, define
+\[
+X=A-\operatorname{rowmean}(A), \qquad C=\frac{1}{T}XX^\top.
+\]
+We use $\rho(C)$ together with attention entropy as a diagnostic signal.
+
+\begin{conjecture}[Spectral Instability Hypothesis for Transformers]
+Reasoning collapse in transformers may be driven by spectral instability in attention dynamics. This claim is testable through probe-based monitoring and intervention experiments.
+\end{conjecture}
+
+\section{Conclusion}
+The main rigorously established contribution is a sharp local-coupling threshold for WTRED at $r\sim n^{-2/3}$. The broader framework links scale, motifs, correlation energy, and weak spectral stability into a unified language for adaptive random structures.
+
+\end{document}

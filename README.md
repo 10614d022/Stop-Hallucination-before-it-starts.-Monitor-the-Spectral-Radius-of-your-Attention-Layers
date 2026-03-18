@@ -1,28 +1,33 @@
-# Stop-Hallucination-before-it-starts.-Monitor-the-Spectral-Radius-of-your-Attention-Layers
-Stop Hallucination before it starts. Monitor the Spectral Radius of your Attention Layers
+# Spectral Instability — Full Clean Version
 
-We propose a **testable hypothesis**:
+這是乾淨完整版，保留兩條主線：
 
-> Reasoning collapse in large language models (LLMs) may be driven by spectral instability in attention dynamics.
+1. **公式／理論主線**
+   - arXiv 論文主稿（LaTeX）
+   - 公式推導總表
+   - 定理 / 引理 / 猜想分級
+   - WTRED 與 Transformer attention 的跨域對齊
 
-This repository provides a **minimal, reproducible experiment** that allows anyone to verify or refute this claim in **<10 minutes**.
+2. **最小實驗主線**
+   - 最小 A/B 實驗
+   - 譜 proxy
+   - clamp
+   - survival 匯總
 
----
+## 目錄
 
-## 🔬 What This Is
+- `paper/main.tex`：可直接編譯的論文主稿
+- `paper/FORMULAS.md`：完整公式生成總表
+- `paper/THEOREM_MAP.md`：Theorem / Lemma / Conjecture 地圖
+- `main.py`：最小實驗入口
+- `spectral/`：probe / clamp / collapse metrics
+- `experiments/run_ab.py`：A/B 主流程
+- `analysis/summary.py`：匯總
+- `analysis/plot_survival.py`：survival 圖
 
-This is NOT a finished theory.
-
-This is a **testable research program** consisting of:
-
-- A measurable signal (spectral proxy ρ)
-- A causal intervention (spectral clamping)
-- A falsifiable A/B experimental protocol
-
----
-
-## ⚡ Quick Start
+## 最短使用
 
 ```bash
 pip install -r requirements.txt
-python main.py --model gpt2 --runs 3
+python main.py --model gpt2 --runs 3 --prompt "Paris is the capital of"
+```
